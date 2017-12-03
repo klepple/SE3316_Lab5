@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "https://lab5-bears-klepple.c9users.io:8081",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "info"
+    }
+}

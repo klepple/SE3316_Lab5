@@ -1,0 +1,15 @@
+<!--Include routing-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<div id="fullPage">
+  <app-navbar></app-navbar>
+  <div style="text-align:center" class="jumbotron">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+    <ul>
+      <li *ngFor="let user of users">{{ user.name }}</li>
+    </ul>
+  <router-outlet></router-outlet>
+</div>
+
