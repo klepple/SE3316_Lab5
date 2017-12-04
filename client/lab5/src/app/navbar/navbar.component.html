@@ -1,5 +1,10 @@
 <div id="appname">
-    <h3>Reach for the Stars</h3>
+    <div style="cursor: pointer">
+        <h3 (click)="goHome($event)">Reach for the Stars</h3>
+    </div>
     <input (click)="signIn($event)" type="submit" value="Sign In">
     <input (click)="signUp($event)" type="submit" value="Sign Up">
+    <div style="cursor: pointer">
+        <p (click)="seePolicy($event)">Privacy & DMCA policies</p>
+    </div>
 </div>

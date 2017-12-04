@@ -1,14 +1,35 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    bcrypt = require('bcrypt'),
-    SALT_WORK_FACTOR = 10;
+var mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-var UserSchema = new Schema({
+var UserSchema = mongoose.Schema({
 	firstname: { type: String, required: true },
 	lastname: { type: String, required: true },
-    username: { type: String, required: true, index: { unique: true } },
+    username: { type: String, required: true },
     password: { type: String, required: true }
 });
+
+
+
+const User = module.exports = mongoose.model('User', UserSchema);
+
+module.exports.getUserById = function(id, callback) {
+    User.findById(id, callback);
+}
+
+module.exports.getUserByUsername = function(username, callback) {
+    const query = {username: username}
+    User.findOne(query, callback);
+}
+
+module.exports.addUser = function(newUser, callback){
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if(err) throw err;
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  });
+}
 
 /*UserSchema.pre('save', function(next) {
     var user = this;
@@ -29,13 +50,11 @@ var UserSchema = new Schema({
             next();
         });
     });
-});*/
+});
 
-/*UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };*/
-
-module.exports = mongoose.model('User', UserSchema);

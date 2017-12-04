@@ -4,11 +4,12 @@
  **/
  
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
+  
 
   private nasaUrl = 'https://images-api.nasa.gov/asset/';
   result:any;
@@ -26,8 +27,7 @@ export class DataService {
   
 // -------------------- NASA stuff  --------------------
   getImages(){
-    console.log(this.nasaUrl + 'PIA04921');
-    return this._http.get(this.nasaUrl + 'PIA04921')
+    return this._http.get(this.nasaUrl);
     .map(result => this.result = result.json());
   }
 

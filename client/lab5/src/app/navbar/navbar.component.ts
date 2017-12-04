@@ -12,6 +12,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  goHome(e){
+    e.preventDefault();
+  	this.router.navigate(['']);
+  }
+  
   signIn(e){
     e.preventDefault();
   	this.router.navigate(['login']);
@@ -19,5 +25,10 @@ export class NavbarComponent implements OnInit {
   signUp(e) {
     e.preventDefault();
     this.router.navigate(['signup']);
+  }
+  
+  seePolicy(e){
+    e.preventDefault();
+  	this.router.navigate(['privacy']);
   }
 }
