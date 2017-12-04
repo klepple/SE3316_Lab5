@@ -102,7 +102,7 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
 var Collection = require("../models/collection-model.js");
 
 // Add a new collection
-router.post('/addcollection', (req, res, next) => {
+router.post('/collections', (req, res, next) => {
   let newCollection= new Collection({
     name: req.body.name,
     description: req.body.description,
@@ -118,29 +118,38 @@ router.post('/addcollection', (req, res, next) => {
       res.json({success: true, msg:'Collection created'});
     }
   });
-});
+})
 
-.put(function(req, res) {
-
-        // use our dolphin model to find the dolphin we want
-        Dolphin.findById(req.params.dolphin_id, function(err, dolphin) {
-
-            if (err){
+//Get collections for a user
+router.get('/collections/:user_id', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        Collection.find(function(err, collections) {
+            if (err) {
                 res.send(err);
             }
 
-            dolphin.name = req.body.name;  // update the dolphin's info
-
-            // save the dolphin
-            dolphin.save(function(err) {
-                if (err) {
-                    res.send(err);
-                }
-
-                res.json({ message: 'Dolphin updated!' });
-            });
+            res.json(collections);
         });
-    })
+    });
+
+router.put('/collections/modify', function(req, res) {
+  const name = req.body.name;
+  Collection.getCollectionByName(name, (err, collection) => {
+    if(err) throw err;
+    if(!collection){
+      return res.json({success: false, msg: 'Collection not found'});
+    }
+    collection.imgArr = req.body.imgArr;
+    collection.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json({ message: 'Collection updated!' });
+    });
+  });
+        
+});
 
 
 module.exports = router;

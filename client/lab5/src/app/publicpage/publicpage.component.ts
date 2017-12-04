@@ -20,8 +20,8 @@ export class PublicpageComponent implements OnInit {
     ) {
 
     // Access the Data Service's getImages() method we defined
-    this.dataService.getImages()
-        .subscribe(res => this.photos = res);
+    /*this.dataService.getImages()
+        .subscribe(res => this.photos = res);*/
   }
 
   ngOnInit() {

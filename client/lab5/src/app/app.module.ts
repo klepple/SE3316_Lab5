@@ -9,8 +9,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserService } from './user.service';
+import { CollectionService } from './collection.service';
 import { AuthGuard } from './guards/auth.guard';
 import { FlashMessagesModule } from 'ngx-flash-messages';
+import { UiSwitchModule } from 'ngx-ui-switch'
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -51,9 +53,10 @@ const appRoutes:Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    UiSwitchModule
   ],
-  providers: [UserService, DataService, AuthGuard],
+  providers: [UserService, CollectionService, DataService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

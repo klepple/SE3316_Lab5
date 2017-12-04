@@ -13,6 +13,7 @@ export class DataService {
   
   authToken: any;
   user: any;
+  collection: any;
   
   constructor(private _http: Http) { }
   
@@ -43,7 +44,7 @@ export class DataService {
   
   storeUserData(token, user){
     localStorage.setItem('id:token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user_id', JSON.stringify(user.id));
     this.authToken = token;
     this.user = user;
   }
@@ -65,7 +66,26 @@ export class DataService {
   
 // ------ Collection functionality ------------
 
-
+  createCollection(collection){
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this._http.post("api/collections", collection, {headers: headers})
+      .map(res => res.json());
+    }
+    
+  getPublicCollections(publicColl){
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this._http.get("api/collections/:" + name, {headers: headers})
+      .map(res => res.json());
+    }
+    
+  getCollectionsForUser(user_id){
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this._http.get("api/collections/:" + user_id, {headers: headers})
+      .map(res => res.json());
+    }
   
 //------------ Nasa image functionality --------------------
   

@@ -26,7 +26,7 @@ module.exports.addCollection = function(newCollection, callback){
     newCollection.save(callback);
 }
 
-module.exports.addImageToCollection = function(collection, callback){
+/*module.exports.addImageToCollection = function(collection, callback){
     this.getCollectionByName(collection.name, callback);
     collection.save(callback);
-}
+}*/

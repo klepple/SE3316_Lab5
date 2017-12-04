@@ -1,8 +1,10 @@
 <div *ngIf="user">
     <h2 class="page-header">Hello {{user.firstname}} {{user.lastname}} !</h2>
+    <br>
+    <h4>Collections</h4>
     <ul class="list-group">
-        Collections
-        <li class="list-group-item">Coll1</li>
-        <li class="list-group-item">Coll2</li>
+        <li class="list-group-item" *ngFor="let collection of collections">
+            {{collection}}
+        </li>
     </ul>
 </div>

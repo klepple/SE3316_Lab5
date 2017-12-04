@@ -1,4 +1,23 @@
-<h1>Dashboard</h1>
-<p>
-    Successfully logged in.
-</p>
+<form (submit)="onCreateSubmit()">
+    <div>
+       <h3>Create Collection</h3> 
+    </div>
+	<div class="input">
+		<label>Name</label>
+		<input type="text" [(ngModel)] = "name" name= "name">
+	</div>
+	<div class="input">
+		<label>Description</label>
+		<textarea rows="4" cols="50" [(ngModel)] = "description" name= "description">
+		</textarea>
+	</div>
+	<div>
+	    <p>
+	        Make collection public:
+	    </p>
+	    <ui-switch [checked]="false" [(ngModel)]="visibility" name="visibility"></ui-switch>
+	</div>
+	<div class="input">
+		<input type="submit" class= "btn btn-primary" value="Create">
+	</div>
+</form>

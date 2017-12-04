@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { CollectionService } from '../collection.service';
+import { DataService } from '../data.service';
+import { FlashMessagesService } from 'ngx-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +10,48 @@ import { UserService } from '../user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor(private user:UserService) { }
+  name: String;
+  description: String;
+  visibility: Boolean;
+  
+  constructor(
+    private validate:CollectionService, 
+    private flashMessage:FlashMessagesService,
+    private dataService:DataService,
+    private router:Router
+    ) { }
 
   ngOnInit() {
+  }
+  
+  onCreateSubmit(){
+    const collection = {
+      name: this.name,
+      description: this.description,
+      visibility: this.visibility,
+      userId: localStorage.getItem('user_id')
+    }
+    console.log(this.visibility);
+    console.log(this.name);
+    
+    //Required Fields
+    if(!this.validate.validateCreate(collection)) {
+      this.flashMessage.show("Please fill in all fields", {
+        classes: ['alert', 'alert-warning'], 
+        timeout: 3000
+      });
+      return false;
+    }
+    
+    // Create Collection
+    this.dataService.createCollection(collection).subscribe(data => {
+      if(data.success){
+        this.flashMessage.show("Collection successfully created!", {classes: ['alert', 'alert-success'], timeout: 3000});
+        //this.router.navigate(['/profile']);
+      } else {
+        this.flashMessage.show("Something went wrong.", {classes: ['alert', 'alert-warning'], timeout: 3000});
+      }
+    });
   }
 
 }
