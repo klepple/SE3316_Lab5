@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // Import the DataService
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publicpage',
@@ -13,14 +14,21 @@ export class PublicpageComponent implements OnInit {
   photos: Array<any>;
 
   // Create an instance of the DataService through dependency injection
-  constructor(private _dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private router:Router
+    ) {
 
     // Access the Data Service's getImages() method we defined
-    this._dataService.getImages()
+    this.dataService.getImages()
         .subscribe(res => this.photos = res);
   }
 
   ngOnInit() {
+  }
+  
+  redirect(){
+    this.router.navigate(['login']);
   }
 
 }

@@ -16,7 +16,8 @@ export class DataService {
   
   constructor(private _http: Http) { }
   
-  
+//----------- User functionality  --------------
+
   registerUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -62,13 +63,15 @@ export class DataService {
     localStorage.clear();
   }
   
-  private query = 'star';
-  result:any;
+// ------ Collection functionality ------------
+
+
   
+//------------ Nasa image functionality --------------------
   
-  getImages(){
-    return this._http.get('https://images-api.nasa.gov/search?q=star&media_type=image')
-    .map(result => this.result = result.json().collection.items);
+  getImages(query){
+    return this._http.get('https://images-api.nasa.gov/search?q=' + query + '&media_type=image')
+    .map((data:any) => data.json());
   }
 
 }

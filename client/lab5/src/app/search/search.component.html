@@ -1,0 +1,19 @@
+<form (submit)="onSearchSubmit()">
+	<div class="input">
+		<label>Search</label>
+		<input type="text" [(ngModel)] = "query" name= "query">
+		<input type="submit" class= "btn btn-primary" value="Enter">
+	</div>
+</form>
+
+<div>
+   <ul>
+    <div *ngFor="let photo of photos; let i=index">
+        <img src="{{photo.links[0]['href']}}"/>
+        <input type="submit" class= "btn btn-primary" value="Add to Collection">
+    </div>
+  </ul>
+</div>
+<div>
+    
+</div>
