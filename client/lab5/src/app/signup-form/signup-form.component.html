@@ -1,21 +1,21 @@
-<form (submit)="loginUser($event)">
+<form (submit)="onRegisterSubmit()">
     <div class="input">
 		<label>First Name</label>
-		<input type="text">
+		<input type="text" [(ngModel)] = "firstname" name= "firstname">
 	</div>
 	<div class="input">
 		<label>Last Name</label>
-		<input type="text">
+		<input type="text" [(ngModel)] = "lastname" name= "lastname">
 	</div>
 	<div class="input">
 		<label>Username (email)</label>
-		<input type="text">
+		<input type="text" [(ngModel)] = "username" name= "username">
 	</div>
 	<div class="input">
 		<label>Password</label>
-		<input type="password">
+		<input type="password" [(ngModel)] = "password" name= "password">
 	</div>
 	<div class="input">
-		<input type="submit" value="Submit">
+		<input type="submit" class= "btn btn-primary" value="Submit">
 	</div>
 </form>

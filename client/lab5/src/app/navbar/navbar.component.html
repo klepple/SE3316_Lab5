@@ -1,10 +1,25 @@
-<div id="appname">
-    <div style="cursor: pointer">
-        <h3 (click)="goHome($event)">Reach for the Stars</h3>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-default">
+    <a class="navbar-brand" href="#">Reach for the Stars</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"[routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item"[routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/privacy']">Privacy</a>
+          </li>
+        </ul>
+        <ul class= "nav navbar-nav navbar-right">
+          <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/login']">Sign In</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['/signup']">Sign Up</a>
+          </li>
+        </ul>
     </div>
-    <input (click)="signIn($event)" type="submit" value="Sign In">
-    <input (click)="signUp($event)" type="submit" value="Sign Up">
-    <div style="cursor: pointer">
-        <p (click)="seePolicy($event)">Privacy & DMCA policies</p>
-    </div>
-</div>
+</nav>

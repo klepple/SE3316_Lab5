@@ -8,6 +8,12 @@
         able to rate pre-existing image collections, browse images and view the beauty of our galaxy. Best of all, it's
         free! Sign up today!
     </div>
+    <br>
     <h1> Public collections </h1>
-    <img [src]="photo"/>
+    <ul>
+        <li *ngFor = "let photo of photos">
+            {{photo}] 
+        </li>
+    </ul>
+    <!--<img [src]="photo"/>-->
 </ul>

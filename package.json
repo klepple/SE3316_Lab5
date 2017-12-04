@@ -20,6 +20,9 @@
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mongoose": "^4.13.5"
+    "mongoose": "^4.13.5",
+    "ngx-flash-messages": "^1.0.4",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1"
   }
 }

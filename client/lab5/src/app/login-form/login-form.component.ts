@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { DataService } from '../data.service';
+import { FlashMessagesService } from 'ngx-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -8,19 +10,38 @@ import { UserService } from '../user.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-
-  constructor(private router:Router, private user:UserService) { }
+  
+  username: String;
+  password: String;
+  
+  constructor(
+    private router:Router, 
+    private dataService: DataService,
+    private flashMessage: FlashMessagesService
+    ) { }
 
   ngOnInit() {
   }
   
-  loginUser(e){
-    e.preventDefault();
-    var username = e.target.elements[0].value;
-    var password = e.target.elements[1].value;
-    if(username == 'admin' && password == 'admin') {
-      this.user.setUserLoggedIn();
-  		this.router.navigate(['dashboard']);
-  	}
+  onLoginSubmit(){
+    const user = {
+      username: this.username,
+      password: this.password
+    }
+    
+    this.dataService.authenticateUser(user).subscribe(data =>{
+      if(data.success){
+        this.dataService.storeUserData(data.token, data.user);
+        this.flashMessage.show('You are now logged in.', {
+          cssClass: 'alert', 
+          timeout: 5000});
+          this.router.navigate(['dashboard']);
+      } else {
+        this.flashMessage.show(data.msg, {
+          cssClass: 'alert', 
+          timeout: 5000});
+          this.router.navigate(['login']);
+      }
+    });
   }
 }

@@ -10,25 +10,40 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
   
-
-  private nasaUrl = 'https://images-api.nasa.gov/asset/';
-  result:any;
+  authToken: any;
+  user: any;
+  
   constructor(private _http: Http) { }
-
-  getUsers() {
-      return this._http.get("/api/collections")
-      .map(result => this.result = result.json().data);
+  
+  
+  registerUser(user){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("api/register", user, {headers: headers})
+    .map(res => res.json());
   }
   
-   getUser() {
-      return this._http.get("/api/userauthentification/:user_id")
-      .map(result => this.result = result.json().data);
+  authenticateUser(user){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("api/authenticate", user, {headers: headers})
+    .map(res => res.json());
   }
   
-// -------------------- NASA stuff  --------------------
+  storeUserData(token, user){
+    localStorage.setItem('id:token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
+  }
+  
+  private query = 'star';
+  result:any;
+  
+  
   getImages(){
-    return this._http.get(this.nasaUrl);
-    .map(result => this.result = result.json());
+    return this._http.get('https://images-api.nasa.gov/search?q=star&media_type=image');
+    .map(result => this.result = result.json().collection.items);
   }
 
 }
