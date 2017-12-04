@@ -36,13 +36,19 @@ export class SignupFormComponent implements OnInit {
     
     //Required Fields
     if(!this.validate.validateRegister(user)) {
-      this.flashMessage.show("Please fill in all fields", {cssClass:'alert-warning', timeout: 3000});
+      this.flashMessage.show("Please fill in all fields", {
+        classes: ['alert', 'alert-success'], 
+        timeout: 3000
+      });
       return false;
     }
     
     //Validate Email
     if(!this.validate.validateEmail(user.username)) {
-      this.flashMessage.show("Please fill in a valid email address", {cssClass:'alert-warning', timeout: 3000});
+      this.flashMessage.show("Please fill in a valid email address", {
+        classes: ['alert', 'alert-success'],
+        timeout: 3000
+      });
       return false;
     }
     

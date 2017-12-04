@@ -33,12 +33,12 @@ export class LoginFormComponent implements OnInit {
       if(data.success){
         this.dataService.storeUserData(data.token, data.user);
         this.flashMessage.show('You are now logged in.', {
-          cssClass: 'alert', 
+          classes: ['alert', 'alert-success'], 
           timeout: 5000});
           this.router.navigate(['dashboard']);
       } else {
         this.flashMessage.show(data.msg, {
-          cssClass: 'alert', 
+          classes: ['alert', 'alert-warning'], 
           timeout: 5000});
           this.router.navigate(['login']);
       }

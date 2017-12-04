@@ -20,6 +20,7 @@ import { DataService } from './data.service';
 import { PublicpageComponent } from './publicpage/publicpage.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { PrivacyPolComponent } from './privacy-pol/privacy-pol.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const appRoutes:Routes = [
@@ -27,7 +28,8 @@ const appRoutes:Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'privacy', component: PrivacyPolComponent },
-  { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent }
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes:Routes = [
     DashboardComponent,
     PublicpageComponent,
     SignupFormComponent,
-    PrivacyPolComponent
+    PrivacyPolComponent,
+    ProfileComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

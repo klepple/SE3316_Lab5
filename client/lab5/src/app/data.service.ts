@@ -6,6 +6,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class DataService {
@@ -30,6 +31,15 @@ export class DataService {
     .map(res => res.json());
   }
   
+  getProfile(){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this._http.get("api/profile", {headers: headers})
+    .map(res => res.json());
+  }
+  
   storeUserData(token, user){
     localStorage.setItem('id:token', token);
     localStorage.setItem('user', JSON.stringify(user));
@@ -37,12 +47,27 @@ export class DataService {
     this.user = user;
   }
   
+  loadToken(){
+    const token = localStorage.getItem('id:token');
+    this.authToken = token;
+  }
+  
+  loggedIn(){
+    return tokenNotExpired();
+  }
+  
+  logout(){
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
+  }
+  
   private query = 'star';
   result:any;
   
   
   getImages(){
-    return this._http.get('https://images-api.nasa.gov/search?q=star&media_type=image');
+    return this._http.get('https://images-api.nasa.gov/search?q=star&media_type=image')
     .map(result => this.result = result.json().collection.items);
   }
 
