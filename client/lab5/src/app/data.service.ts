@@ -53,7 +53,7 @@ export class DataService {
   }
   
   loggedIn(){
-    return tokenNotExpired();
+    return tokenNotExpired("id:token");
   }
   
   logout(){

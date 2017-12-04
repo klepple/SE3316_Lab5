@@ -20,10 +20,10 @@
           <li *ngIf="dataService.loggedIn()" class="nav-item" [routerLinkActive]="['active']">
               <a class="nav-link" [routerLink]="['/profile']">Profile</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['active']">
+          <li *ngIf="!dataService.loggedIn()" class="nav-item" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/login']">Sign In</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['active']">
+          <li *ngIf="!dataService.loggedIn()" class="nav-item" [routerLinkActive]="['active']">
               <a class="nav-link" [routerLink]="['/signup']">Sign Up</a>
           </li>
           <li *ngIf="dataService.loggedIn()" class="nav-item" [routerLinkActive]="['active']">

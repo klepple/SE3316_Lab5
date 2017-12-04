@@ -9,7 +9,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserService } from './user.service';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 
 // Import the Http Module and our Data Service
@@ -28,7 +28,7 @@ const appRoutes:Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'privacy', component: PrivacyPolComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
   { path: 'profile', component: ProfileComponent }
 ]
 
@@ -50,7 +50,7 @@ const appRoutes:Routes = [
     FormsModule,
     FlashMessagesModule
   ],
-  providers: [UserService, AuthGuard, DataService],
+  providers: [UserService, DataService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
