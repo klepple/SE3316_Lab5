@@ -120,20 +120,27 @@ router.post('/addcollection', (req, res, next) => {
   });
 });
 
-// Get collections
-router.get('/collections', (req, res) => {
-    connection((db) => {
-        db.collection('collections')
-            .find()
-            .toArray()
-            .then((collections) => {
-                response.data = collections;
-                res.json(response);
-            })
-            .catch((err) => {
-                sendError(err, res);
+.put(function(req, res) {
+
+        // use our dolphin model to find the dolphin we want
+        Dolphin.findById(req.params.dolphin_id, function(err, dolphin) {
+
+            if (err){
+                res.send(err);
+            }
+
+            dolphin.name = req.body.name;  // update the dolphin's info
+
+            // save the dolphin
+            dolphin.save(function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json({ message: 'Dolphin updated!' });
             });
-    });
-});
+        });
+    })
+
 
 module.exports = router;

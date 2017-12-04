@@ -24,7 +24,8 @@ export class SearchComponent implements OnInit {
   
   onSearchSubmit(){
     this.dataService.getImages(this.query).subscribe(
-        (data:any) => this.photos = data.collection.items;
+        (data:any) => this.photos = data.collection.items
     );
+  }
   
 }

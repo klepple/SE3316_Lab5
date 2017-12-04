@@ -7,6 +7,7 @@ var CollectionSchema = new Schema({
     description: { type: String, required: true },
     visibility: { type: Boolean, required: true }, //true for public, false for private
     userId: { type: String, required: true },
+    rating: { type: Number, default: 0},
     imgArr: { type: [String] }
 });
 
@@ -26,6 +27,6 @@ module.exports.addCollection = function(newCollection, callback){
 }
 
 module.exports.addImageToCollection = function(collection, callback){
-    this.getCollectionByName(collection.name, callback)
+    this.getCollectionByName(collection.name, callback);
     collection.save(callback);
 }
