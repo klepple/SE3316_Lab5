@@ -64,7 +64,7 @@ export class DataService {
     localStorage.clear();
   }
   
-// ------ Collection functionality ------------
+// --------- Collection functionality ------------
 
   createCollection(collection){
       let headers = new Headers();
@@ -94,7 +94,6 @@ export class DataService {
       .map(res => res.json());
     }
       
-  
 //------------ Nasa image functionality --------------------
   
   getImages(query){
