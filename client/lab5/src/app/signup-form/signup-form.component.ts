@@ -15,7 +15,6 @@ export class SignupFormComponent implements OnInit {
   username: String;
   password: String;
   
-  
   constructor(
     private validate:UserService, 
     private flashMessage:FlashMessagesService,
