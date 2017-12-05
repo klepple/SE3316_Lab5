@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
       return false;
     })
     
-    this.dataService.getCollections().subscribe(collections => {
+    this.dataService.getCollectionsForUser(user.id).subscribe(collections => {
       this.collections = collections.name;
     })
   }
