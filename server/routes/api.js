@@ -120,6 +120,18 @@ router.post('/collections', (req, res, next) => {
   });
 })
 
+//Get all collections
+router.get('/collections', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        Collection.find(function(err, collections) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(collections);
+        });
+    });
+
 //Get collections for a user
 router.get('/collections/:user_id', function(req, res) {
   const user_id = req.params.user_id;
