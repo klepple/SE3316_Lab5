@@ -122,15 +122,16 @@ router.post('/collections', (req, res, next) => {
 
 //Get collections for a user
 router.get('/collections/:user_id', function(req, res) {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        Collection.find(function(err, collections) {
-            if (err) {
-                res.send(err);
-            }
-
-            res.json(collections);
-        });
-    });
+  const user_id = req.params.user_id;
+  Collection.getCollectionByUserId(user_id, (err, collection) => {
+    if(err) throw err;
+    if(!collection){
+      return res.json({success: false, msg: 'Collection not found'});
+    }
+    res.json(collection);
+  });
+    
+});
 
 router.put('/collections/modify', function(req, res) {
   const name = req.body.name;
