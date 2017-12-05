@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user: Object;
   collections: any[];
+  user_id: String;
   
   constructor(
     private dataService: DataService, 
@@ -19,16 +20,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.dataService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      console.log(this.user._id);
-      this.dataService.getCollectionsForUser(this.user._id).subscribe(collections => {
-      this.collections = collections;
-    })
-    console.log(this.collections);
+      this.user_id = profile.user._id;
     },
     err => {
       console.log(err);
       return false;
     })
+    this.dataService.getCollectionsForUser(this.user_id).subscribe(
+        (data:any) => this.collections = data);
     
   }
 

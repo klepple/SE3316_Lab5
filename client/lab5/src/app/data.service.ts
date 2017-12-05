@@ -91,7 +91,7 @@ export class DataService {
   addImageToCollection(photoUrl){
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this._http.put("api/collections/:" + collection.name, collection, {headers: headers})
+      return this._http.put("api/collections/:" + this.collection.name, this.collection, {headers: headers})
       .map(res => res.json());
     }
       
