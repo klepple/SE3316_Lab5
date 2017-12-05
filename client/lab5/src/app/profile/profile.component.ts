@@ -19,15 +19,16 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.dataService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      console.log(this.user._id);
+      this.dataService.getCollectionsForUser(this.user._id).subscribe(collections => {
+      this.collections = collections.name;
+    })
     },
     err => {
       console.log(err);
       return false;
     })
     
-    this.dataService.getCollectionsForUser(user.id).subscribe(collections => {
-      this.collections = collections.name;
-    })
   }
 
 }
