@@ -22,6 +22,11 @@ module.exports.getCollectionByName = function(name, callback) {
     Collection.findOne(query, callback);
 }
 
+module.exports.getCollectionByUserId = function(user_id, callback) {
+    const query = {userId: user_id}
+    Collection.findOne(query, callback);
+}
+
 module.exports.addCollection = function(newCollection, callback){
     newCollection.save(callback);
 }
