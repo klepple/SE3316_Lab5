@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.createCollection(collection).subscribe(data => {
       if(data.success){
         this.flashMessage.show("Collection successfully created!", {classes: ['alert', 'alert-success'], timeout: 3000});
-        //this.router.navigate(['/profile']);
+        this.router.navigate(['/profile']); //Navigate to profile to see created collection
       } else {
         this.flashMessage.show("Something went wrong.", {classes: ['alert', 'alert-warning'], timeout: 3000});
       }
