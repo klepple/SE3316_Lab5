@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   }
   
   onCreateSubmit(){
-    const user_id = localStorage.getItem('user_id').substr(1).slice(0, -1)
+    const user_id = localStorage.getItem('user_id').substr(1).slice(0, -1);
     const collection = {
       name: this.name,
       description: this.description,
