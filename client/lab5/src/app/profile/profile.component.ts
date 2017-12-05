@@ -19,17 +19,17 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.dataService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      this.user_id = profile.user._id;
     },
     err => {
       console.log(err);
       return false;
     })
     const user_id = localStorage.getItem('user_id').substr(1).slice(0, -1)
+    console.log(user_id);
     this.dataService.getCollectionsForUser(user_id).subscribe(
         (data:any) => this.collections = data);
         
-      console.log(this.collections);
+    console.log(this.collections);
   }
 
 }

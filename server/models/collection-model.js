@@ -24,6 +24,7 @@ module.exports.getCollectionByName = function(name, callback) {
 
 module.exports.getCollectionByUserId = function(user_id, callback) {
     const query = {userId: user_id}
+    console.log(query);
     Collection.findOne(query, callback);
 }
 

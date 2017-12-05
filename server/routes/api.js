@@ -135,6 +135,7 @@ router.get('/collections', function(req, res) {
 //Get collections for a user
 router.get('/collections/:user_id', function(req, res) {
   const user_id = req.params.user_id;
+  console.log(user_id);
   Collection.getCollectionByUserId(user_id, (err, collection) => {
     if(err) throw err;
     if(!collection){

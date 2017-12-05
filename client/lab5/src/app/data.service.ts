@@ -83,8 +83,7 @@ export class DataService {
   getCollectionsForUser(user_id){
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      console.log("api/collections/:" + user_id);
-      return this._http.get("api/collections/:" + user_id, {headers: headers})
+      return this._http.get("api/collections/" + user_id, {headers: headers})
       .map(res => res.json());
     }
     
