@@ -149,6 +149,19 @@ router.put('/collections/modify', function(req, res) {
       res.json({ message: 'Collection updated!' });
     });
   });
+  
+  router.delete('/collections/:collectionId', function(req, res) {
+        Collection.remove({
+            _id: req.params.collectionId
+        }, function(err, collection) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json({ message: 'Successfully deleted' });
+            
+        });
+    });
         
 });
 

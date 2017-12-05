@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: Object;
-  collections: any;
+  collections: any[];
   
   constructor(
     private dataService: DataService, 
@@ -21,8 +21,9 @@ export class ProfileComponent implements OnInit {
       this.user = profile.user;
       console.log(this.user._id);
       this.dataService.getCollectionsForUser(this.user._id).subscribe(collections => {
-      this.collections = collections.name;
+      this.collections = collections;
     })
+    console.log(this.collections);
     },
     err => {
       console.log(err);
