@@ -86,6 +86,14 @@ export class DataService {
       return this._http.get("api/collections/:" + user_id, {headers: headers})
       .map(res => res.json());
     }
+    
+  addImageToCollection(photoUrl){
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this._http.put("api/collections/:" + collection.name, collection, {headers: headers})
+      .map(res => res.json());
+    }
+      
   
 //------------ Nasa image functionality --------------------
   

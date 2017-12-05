@@ -28,4 +28,12 @@ export class SearchComponent implements OnInit {
     );
   }
   
+  addImageToCollection(){
+    photoUrl: String;
+    for(int i = 0; i < photos.length(); i++){
+      photoUrl = photos[i].links[0]['href'];
+    }
+    {{photo.links[0]['href']}}
+  }
+  
 }
