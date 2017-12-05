@@ -6,7 +6,7 @@ var CollectionSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     visibility: { type: Boolean, required: true }, //true for public, false for private
-    userId: { type: String, required: true },
+    userId: { type: String, required: true }, //Id of user who created the collection
     rating: { type: Number, default: 0},
     imgArr: { type: [String] }
 });
